@@ -11,7 +11,7 @@ A Codex skill for turning a street-food video into an English edition. English s
 Use Python 3.10 or later and install FFmpeg with ffprobe, libass, and libx264. On macOS, the optional Chinese OCR helper uses Swift and Apple Vision. Clone the release into a **new** Codex skill directory:
 
 ```sh
-git clone --branch v1.0.0 https://github.com/superchaospc/china-food-show.git ~/.codex/skills/china-food-show
+git clone --branch v1.0.1 https://github.com/superchaospc/china-food-show.git ~/.codex/skills/china-food-show
 cd ~/.codex/skills/china-food-show
 python3 -m venv .venv
 . .venv/bin/activate
@@ -29,6 +29,10 @@ The smoke test creates a two-second synthetic clip, burns two captions, mixes an
 | Captions | Short spoken English, prices in the original currency plus approximate USD, and an editable SRT. The final MP4 is checked for early, late, and missing captions. |
 | Voices and sound | Cast the people who actually speak. Use one voice for a solo host, stable voices for a conversation, or ambience alone for a silent scene. Keep the sound of cooking; lower optional music under speech. |
 | Covers | Two separate English-only compositions based on the episode: a 16:9 YouTube thumbnail and a 3:4 portrait cover asset for TikTok. Select frames with no visible Chinese captions or signs. |
+
+For the Sichuan episode, the large white-and-yellow **The China Food Show** title sits above two smaller lines: **Every Dish Is $1.80** and **Sichuan, China**. The price applies to each dish. When revising the copy on an approved cover, start with that cover and keep its photograph, crop, title and rules in place. Check the price against the footage for each new episode.
+
+**Where to post the full episode.** A public four-minute Facebook Reel can be recommended to new viewers. Originality also affects distribution. On Instagram, use a cut of three minutes or less when the goal is reaching new viewers through recommendations. Existing followers can watch a longer version. [Facebook Reels](https://about.fb.com/news/2025/06/making-it-easier-create-videos-facebook/) · [Facebook originality guidelines](https://about.fb.com/news/2026/03/rewarding-original-creators-on-facebook/) · [Instagram Reels](https://help.instagram.com/2720958398006062)
 
 Bring your own footage, authorized voices, music, and optional transparent logo. ElevenLabs is needed only to generate new speech. The script can inspect the plan and cache first; only `--generate` submits uncached turns. Desktop software, third-party services, and account credits are supplied by the operator.
 
@@ -52,6 +56,10 @@ Bring your own footage, authorized voices, music, and optional transparent logo.
 | 字幕 | 翻译成容易听懂的口语英语，报价保留原币并补充约合美元。交付 MP4 和英文 SRT，按解码后的画面检查字幕切换。 |
 | 声音 | 按实际发言人数选声，支持单人、多人和无对白。保留炒菜和餐具声，可选配乐在说话时自动放轻。 |
 | 封面 | 按本集菜品、地点和人物动作，分别排版 YouTube 横版 16:9 和 TikTok 竖版 3:4。封面只用英文，也要检查背景里的中文字幕和招牌。 |
+
+四川这集沿用第一版封面。白黄大字节目名 **The China Food Show** 下方放两行小字，分别写 **Every Dish Is $1.80** 和 **Sichuan, China**，让观众一眼看懂每道菜的价格和拍摄地点。修改已定稿封面的文案时，沿用原图、裁切、节目名和分隔线。后续每集的价格以当集实拍为准。
+
+**四分钟完整版可以发到哪里？** Facebook 的公开 Reel 即使长四分钟，也有机会被推荐给新观众，原创性同样会影响分发。Instagram 版如果希望通过推荐触达新观众，时长控制在三分钟以内（含三分钟）；已有粉丝可以观看更长的版本。[Facebook 视频说明](https://about.fb.com/news/2025/06/making-it-easier-create-videos-facebook/) · [Facebook 原创指南](https://about.fb.com/news/2026/03/rewarding-original-creators-on-facebook/) · [Instagram 时长说明](https://help.instagram.com/2720958398006062)
 
 公开版使用你自己的素材、合法可用的音色、配乐和可选台标。生成新旁白时才需要 ElevenLabs；先查看计划和缓存，显式使用 `--generate` 才会提交未生成的台词。TikTok 的 3:4 是封面素材比例，App 常规发布流程是从视频中选择封面帧。
 

@@ -8,6 +8,8 @@ Start from full-resolution licensed footage before subtitles and logos are burne
 
 Build the covers around authentic food and human action from the episode. Use large, bold type in warm yellow and ivory with a short rule beneath the title. Keep the portrait title low and clear of its subject. Any light weathering you add in a design editor should preserve the letterforms at phone size. Use the episode’s own photographic identity and original typography. Avoid another show’s host, artwork, logos, or title marks.
 
+When the user approves a cover and asks for new wording, edit the text on the approved landscape and portrait originals. Preserve the photograph, crop, large series title, and separator rules. The command below composes new covers from clean stills.
+
 Use a brief, factual English hook. Keep any price, location, or claim consistent with the episode. A shorter portrait hook can help retain a readable size. Include a location only when it helps the viewer.
 
 Inspect both source crops for Chinese characters. Check signs, labels, menus, packaging, clothing, reflections, old captions, and background watermarks. For an English-only result, choose a clean alternate frame or crop the writing out before rendering. Do not cover writing with a headline and assume it has disappeared. The script validates supplied text. It cannot confirm the language of pixels in a photograph.
@@ -20,9 +22,8 @@ Install Pillow and use a locally installed bold font. Run the command from the r
 python3 scripts/covers.py \
   --still frames/serving-wide.jpg \
   --portrait-still frames/serving-portrait.jpg \
-  --hook 'A Wok on the Platform' \
-  --portrait-hook 'Station Stir-Fry' \
-  --location 'Sichuan' \
+  --hook 'Every Dish Is $1.80' \
+  --location 'Sichuan, China' \
   --output-dir covers
 ```
 
