@@ -1,0 +1,17 @@
+.DS_Store
+__pycache__/
+*.py[cod]
+.venv/
+.env
+.env.*
+/assets/
+/work/
+/episodes/
+/voice-cache/
+/dist/
+*.mp4
+*.mov
+*.mkv
+*.wav
+*.mp3
+*.m4a
