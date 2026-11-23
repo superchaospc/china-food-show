@@ -4,7 +4,7 @@ Deliver three independently composed JPEGs: 3840 x 2160 for YouTube (16:9), 1440
 
 ## Select the frames and words
 
-Start from full-resolution licensed footage before subtitles and logos are burned in. Choose each aspect ratio separately. Place the focal action toward the right half of the YouTube image to allow for the headline on the left. For the narrower 4:3 landscape frame, keep the subject and headline inside its edges, using a tighter type block or an alternate still if needed. For TikTok, look for a vertical arrangement with the subject in the upper half and quiet space below it.
+Start from full-resolution licensed footage before subtitles and logos are burned in. Choose one text-free master image that shows the dish clearly in all three crops. If creating artwork from episode frames, match the actual ingredients and serving context. Place the focal action toward the right half of the YouTube image to allow for the headline on the left. For the narrower 4:3 landscape frame, keep the subject and headline inside its edges, using a tighter type block if needed. For TikTok, look for a vertical arrangement with the subject in the upper half and quiet space below it.
 
 Build the covers around authentic food and human action from the episode. Use large, bold type in warm yellow and ivory with a short rule beneath the title. Keep the portrait title low and clear of its subject. Any light weathering you add in a design editor should preserve the letterforms at phone size. Use the episode’s own photographic identity and original typography. Avoid another show’s host, artwork, logos, or title marks.
 
@@ -21,15 +21,14 @@ Install Pillow and use a locally installed bold font. Run the command from the r
 ```sh
 python3 scripts/covers.py \
   --still frames/serving-wide.jpg \
-  --portrait-still frames/serving-portrait.jpg \
   --hook 'Every Dish Is $1.80' \
   --location 'Sichuan, China' \
   --output-dir covers
 ```
 
-The required arguments are `--still`, `--hook`, and `--output-dir`. If you supply only one photograph, the script recomposes it independently for each aspect ratio. Use `--wide-focus 0.74,0.44` or `--portrait-focus 0.61,0.38` to identify the subject in normalized coordinates measured from the top left of its source still. Use `--four-three-still` and `--four-three-focus` to control the 4:3 composition separately. When adding a missing 4:3 image to an existing pack, pass `--only 4x3`. Existing files are preserved. Pass `--font` to use a particular local TTF or OTF file.
+The required arguments are `--still`, `--hook`, and `--output-dir`. Pass the same master once via `--still` to compose all three covers. Use `--wide-focus 0.74,0.44` or `--portrait-focus 0.61,0.38` to identify the subject in normalized coordinates measured from the top left of its source still. Use `--four-three-focus` to position the subject in the 4:3 crop. When adding a missing 4:3 image to an existing pack, pass `--only 4x3`. Existing files are preserved. Pass `--font` to use a particular local TTF or OTF file.
 
-Open every exported JPEG at full resolution to check every edge for visible Chinese text. Then inspect them at phone-thumbnail size. Confirm that hands, faces, the key dish, and the English headline remain readable in their respective crops. If a shot cannot pass, select another frame and render the affected cover in a fresh output directory.
+Open every exported JPEG at full resolution to check every edge for visible Chinese text. Then inspect them at phone-thumbnail size. Confirm that hands, faces, the key dish, and the English headline remain readable in their respective crops. If a crop fails, adjust its focus and render it again. If you need a different master image, regenerate the full set from that image.
 
 ## Publishing
 
