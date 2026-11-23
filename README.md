@@ -11,7 +11,7 @@ A Codex skill for turning a street-food video into an English edition. English s
 Use Python 3.10 or later and install FFmpeg with ffprobe, libass, and libx264. On macOS, the optional Chinese OCR helper uses Swift and Apple Vision. Clone the release into a **new** Codex skill directory:
 
 ```sh
-git clone --branch v1.0.4 https://github.com/superchaospc/china-food-show.git ~/.codex/skills/china-food-show
+git clone --branch v1.0.5 https://github.com/superchaospc/china-food-show.git ~/.codex/skills/china-food-show
 cd ~/.codex/skills/china-food-show
 python3 -m venv .venv
 . .venv/bin/activate
@@ -30,7 +30,7 @@ The smoke test creates a two-second synthetic clip, burns two captions, mixes an
 | Voices and sound | Cast the people who actually speak. Use one voice for a solo host, stable voices for a conversation, or ambience alone for a silent scene. Keep the sound of cooking; lower optional music under speech. |
 | Covers | One episode image, cropped and typeset for three English covers: a 16:9 YouTube thumbnail, a 4:3 landscape cover (1440 × 1080), and a 3:4 portrait cover for TikTok. Select frames with no visible Chinese captions or signs. |
 
-A finished episode goes in one folder directly under Downloads, named `The China Food Show - <episode name>`. Open it to find the final MP4, matching English SRT, all three cover JPEGs, an English YouTube title in `Title.txt`, and the posting description with hashtags in `Description.txt`. Only the final files are delivered. Later revisions update the same folder.
+A finished episode goes in one folder directly under Downloads, named `The China Food Show - <episode name>`. Open it to find the final MP4, matching English SRT, all three cover JPEGs, and `Title and Description.txt`. This single text file contains the English YouTube title on the first line, a blank line, then the description and hashtags. Only the final files are delivered. Later revisions update the same folder.
 
 For the Sichuan episode, the large white-and-yellow **The China Food Show** title sits above two smaller lines: **Every Dish Is $1.80** and **Sichuan, China**. The price applies to each dish. When revising the copy on an approved cover, start with that cover and keep its photograph, crop, title and rules in place. Check the price against the footage for each new episode.
 
@@ -59,7 +59,7 @@ Bring your own footage, authorized voices, music, and optional transparent logo.
 | 声音 | 按实际发言人数选声，支持单人、多人和无对白。保留炒菜和餐具声，可选配乐在说话时自动放轻。 |
 | 封面 | 根据本集菜品与场景选取或生成一张无字主图，用同一张图分别裁切和排版 YouTube 横版 16:9、通用横版 4:3（1440×1080）和 TikTok 竖版 3:4。封面只用英文，也要检查背景里的中文字幕和招牌。 |
 
-每集在「下载」下单独建一个 `The China Food Show - <本集名>` 文件夹。打开即可拿到最终 MP4、同步英文 SRT、三张封面、英文 YouTube 标题 `Title.txt` 和带标签的发布描述 `Description.txt`。只交付验收后的成品，后续改版也更新到同一文件夹。
+每集在「下载」下单独建一个 `The China Food Show - <本集名>` 文件夹。打开即可拿到最终 MP4、同步英文 SRT、三张封面和一个发布文案文件 `Title and Description.txt`。首行是英文 YouTube 标题，空一行后是英文描述，末尾保留标签。只交付验收后的成品，后续改版也更新到同一文件夹。
 
 四川这集沿用第一版封面。白黄大字节目名 **The China Food Show** 下方放两行小字，分别写 **Every Dish Is $1.80** 和 **Sichuan, China**，让观众一眼看懂每道菜的价格和拍摄地点。修改已定稿封面的文案时，沿用原图、裁切、节目名和分隔线。后续每集的价格以当集实拍为准。
 
