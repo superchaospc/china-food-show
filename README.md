@@ -11,7 +11,7 @@ A Codex skill for turning a street-food video into an English edition. English s
 Use Python 3.10 or later and install FFmpeg with ffprobe, libass, and libx264. On macOS, the optional Chinese OCR helper uses Swift and Apple Vision. Clone the release into a **new** Codex skill directory:
 
 ```sh
-git clone --branch v1.0.2 https://github.com/superchaospc/china-food-show.git ~/.codex/skills/china-food-show
+git clone --branch v1.0.3 https://github.com/superchaospc/china-food-show.git ~/.codex/skills/china-food-show
 cd ~/.codex/skills/china-food-show
 python3 -m venv .venv
 . .venv/bin/activate
@@ -28,9 +28,9 @@ The smoke test creates a two-second synthetic clip, burns two captions, mixes an
 | Picture | Prefer dedicated watermark-removal software when authorized. Check the actual job quote before using paid credits. Inspect moving textures before adding a transparent logo. |
 | Captions | Short spoken English, prices in the original currency plus approximate USD, and an editable SRT. The final MP4 is checked for early, late, and missing captions. |
 | Voices and sound | Cast the people who actually speak. Use one voice for a solo host, stable voices for a conversation, or ambience alone for a silent scene. Keep the sound of cooking; lower optional music under speech. |
-| Covers | Two separate English-only compositions based on the episode: a 16:9 YouTube thumbnail and a 3:4 portrait cover asset for TikTok. Select frames with no visible Chinese captions or signs. |
+| Covers | Three separately composed English covers: a 16:9 YouTube thumbnail, a 4:3 landscape cover (1440 × 1080), and a 3:4 portrait cover for TikTok. Select frames with no visible Chinese captions or signs. |
 
-A finished episode goes in one folder directly under Downloads, named `The China Food Show - <episode name>`. Open it to find the final MP4, matching English SRT, both cover JPEGs, an English YouTube title in `Title.txt`, and the posting description with hashtags in `Description.txt`. Later revisions update the same folder.
+A finished episode goes in one folder directly under Downloads, named `The China Food Show - <episode name>`. Open it to find the final MP4, matching English SRT, all three cover JPEGs, an English YouTube title in `Title.txt`, and the posting description with hashtags in `Description.txt`. Later revisions update the same folder.
 
 For the Sichuan episode, the large white-and-yellow **The China Food Show** title sits above two smaller lines: **Every Dish Is $1.80** and **Sichuan, China**. The price applies to each dish. When revising the copy on an approved cover, start with that cover and keep its photograph, crop, title and rules in place. Check the price against the footage for each new episode.
 
@@ -57,9 +57,9 @@ Bring your own footage, authorized voices, music, and optional transparent logo.
 | 画面 | 需要去水印时优先用专业软件，付费提交前核对实际报价。先检查菜叶、手和锅沿移动时的修复效果，再按原水印位置叠加自备透明台标。 |
 | 字幕 | 翻译成容易听懂的口语英语，报价保留原币并补充约合美元。交付 MP4 和英文 SRT，按解码后的画面检查字幕切换。 |
 | 声音 | 按实际发言人数选声，支持单人、多人和无对白。保留炒菜和餐具声，可选配乐在说话时自动放轻。 |
-| 封面 | 按本集菜品、地点和人物动作，分别排版 YouTube 横版 16:9 和 TikTok 竖版 3:4。封面只用英文，也要检查背景里的中文字幕和招牌。 |
+| 封面 | 按本集菜品、地点和人物动作，分别排版 YouTube 横版 16:9、通用横版 4:3（1440×1080）和 TikTok 竖版 3:4。封面只用英文，也要检查背景里的中文字幕和招牌。 |
 
-每集在「下载」下单独建一个 `The China Food Show - <本集名>` 文件夹。打开即可拿到最终 MP4、同步英文 SRT、两张封面、英文 YouTube 标题 `Title.txt` 和带标签的发布描述 `Description.txt`。后续改版也更新到同一文件夹。
+每集在「下载」下单独建一个 `The China Food Show - <本集名>` 文件夹。打开即可拿到最终 MP4、同步英文 SRT、三张封面、英文 YouTube 标题 `Title.txt` 和带标签的发布描述 `Description.txt`。后续改版也更新到同一文件夹。
 
 四川这集沿用第一版封面。白黄大字节目名 **The China Food Show** 下方放两行小字，分别写 **Every Dish Is $1.80** 和 **Sichuan, China**，让观众一眼看懂每道菜的价格和拍摄地点。修改已定稿封面的文案时，沿用原图、裁切、节目名和分隔线。后续每集的价格以当集实拍为准。
 
@@ -67,6 +67,6 @@ Bring your own footage, authorized voices, music, and optional transparent logo.
 
 公开版使用你自己的素材、合法可用的音色、配乐和可选台标。生成新旁白时才需要 ElevenLabs；先查看计划和缓存，显式使用 `--generate` 才会提交未生成的台词。TikTok 的 3:4 是封面素材比例，App 常规发布流程是从视频中选择封面帧。
 
-[字幕与验帧](references/captions.md) · [配音与混音](references/audio.md) · [去水印与导出](references/finish.md) · [两种封面的制作说明](references/covers.md)
+[字幕与验帧](references/captions.md) · [配音与混音](references/audio.md) · [去水印与导出](references/finish.md) · [三种封面的制作说明](references/covers.md)
 
 [MIT License](LICENSE)
