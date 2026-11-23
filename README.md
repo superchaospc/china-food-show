@@ -4,14 +4,14 @@
 
 ## English
 
-A Codex skill for turning a street-food video into an English edition. English subtitles appear and disappear on the same frames as the Chinese captions in the picture. The host and vendors can take turns speaking without forcing each subtitle to split when a voice changes.
+A Codex skill for turning a street-food video into an English edition. The burned-in dialogue captions and the English SRT follow the final dub. If the vendor says **“Bag or bowl?”**, viewers read those same words when the vendor speaks. Translations of written-only signs and captions follow the frames where the original text appears.
 
 ### Install and try it
 
 Use Python 3.10 or later and install FFmpeg with ffprobe, libass, and libx264. On macOS, the optional Chinese OCR helper uses Swift and Apple Vision. Clone the release into a **new** Codex skill directory:
 
 ```sh
-git clone --branch v1.0.5 https://github.com/superchaospc/china-food-show.git ~/.codex/skills/china-food-show
+git clone --branch v1.0.6 https://github.com/superchaospc/china-food-show.git ~/.codex/skills/china-food-show
 cd ~/.codex/skills/china-food-show
 python3 -m venv .venv
 . .venv/bin/activate
@@ -26,13 +26,13 @@ The smoke test creates a two-second synthetic clip, burns two captions, mixes an
 | Stage | Result |
 | --- | --- |
 | Picture | Prefer dedicated watermark-removal software when authorized. Check the actual job quote before using paid credits. Inspect moving textures before adding a transparent logo. |
-| Captions | Short spoken English, prices in the original currency plus approximate USD, and an editable SRT. The final MP4 is checked for early, late, and missing captions. |
+| Captions | Compare every spoken turn against the burned-in dialogue and SRT, including brief replies. Verify the rendered frames separately. Show unspoken USD conversions as separate price notes. |
 | Voices and sound | Cast the people who actually speak. Use one voice for a solo host, stable voices for a conversation, or ambience alone for a silent scene. Keep the sound of cooking; lower optional music under speech. |
 | Covers | One episode image, cropped and typeset for three English covers: a 16:9 YouTube thumbnail, a 4:3 landscape cover (1440 × 1080), and a 3:4 portrait cover for TikTok. Select frames with no visible Chinese captions or signs. |
 
 A finished episode goes in one folder directly under Downloads, named `The China Food Show - <episode name>`. Open it to find the final MP4, matching English SRT, all three cover JPEGs, and `Title and Description.txt`. This single text file contains the English YouTube title on the first line, a blank line, then the description and hashtags. Only the final files are delivered. Later revisions update the same folder.
 
-For the Sichuan episode, the large white-and-yellow **The China Food Show** title sits above two smaller lines: **Every Dish Is $1.80** and **Sichuan, China**. The price applies to each dish. When revising the copy on an approved cover, start with that cover and keep its photograph, crop, title and rules in place. Check the price against the footage for each new episode.
+For the Sichuan episode, the large white-and-yellow **The China Food Show** title sits above two smaller lines: **Every Dish Is $1.80** and **Sichuan, China**. The price applies to each dish. When revising the copy on an approved cover, start with that cover and keep its photograph, crop, title and rules in place. Check focus and food texture at full size in each crop. Use US dollars for prices on English covers, titles and descriptions. Verify the exchange rate and portion for each episode. For example, a 250 g serving costing about US$7.49 can use **Worth $7.49?**
 
 **Where to post the full episode.** A public four-minute Facebook Reel can be recommended to new viewers. Originality also affects distribution. On Instagram, use a cut of three minutes or less when the goal is reaching new viewers through recommendations. Existing followers can watch a longer version. [Facebook Reels](https://about.fb.com/news/2025/06/making-it-easier-create-videos-facebook/) · [Facebook originality guidelines](https://about.fb.com/news/2026/03/rewarding-original-creators-on-facebook/) · [Instagram Reels](https://help.instagram.com/2720958398006062)
 
@@ -42,7 +42,7 @@ Bring your own footage, authorized voices, music, and optional transparent logo.
 
 ## 简体中文
 
-这个 Codex 技能把街头美食实拍做成英文版。英文字幕跟随原片中文字逐帧出现、换句和消失。遇到摊主和拍摄者一问一答，配音按人分开；如果原画中文始终是同一条，对应的英文也同时显示。
+这个 Codex 技能把街头美食实拍做成英文版。画面英文对白和英文 SRT 都按最终配音的原词和发声时间制作。摊主说 **“Bag or bowl?”**，观众就同时看到这句话。只出现在画面上的菜单或文字，按原文可见的帧翻译。
 
 ### 安装和试跑
 
@@ -55,13 +55,13 @@ Bring your own footage, authorized voices, music, and optional transparent logo.
 | 环节 | 处理方式 |
 | --- | --- |
 | 画面 | 需要去水印时优先用专业软件，付费提交前核对实际报价。先检查菜叶、手和锅沿移动时的修复效果，再按原水印位置叠加自备透明台标。 |
-| 字幕 | 翻译成容易听懂的口语英语，报价保留原币并补充约合美元。交付 MP4 和英文 SRT，按解码后的画面检查字幕切换。 |
+| 字幕 | 将配音定稿逐句对照画面英文对白和 SRT，核对短答、换人、缩句和实际发声时间，再检查成片字幕帧。美元换算单独显示为价格提示。 |
 | 声音 | 按实际发言人数选声，支持单人、多人和无对白。保留炒菜和餐具声，可选配乐在说话时自动放轻。 |
 | 封面 | 根据本集菜品与场景选取或生成一张无字主图，用同一张图分别裁切和排版 YouTube 横版 16:9、通用横版 4:3（1440×1080）和 TikTok 竖版 3:4。封面只用英文，也要检查背景里的中文字幕和招牌。 |
 
 每集在「下载」下单独建一个 `The China Food Show - <本集名>` 文件夹。打开即可拿到最终 MP4、同步英文 SRT、三张封面和一个发布文案文件 `Title and Description.txt`。首行是英文 YouTube 标题，空一行后是英文描述，末尾保留标签。只交付验收后的成品，后续改版也更新到同一文件夹。
 
-四川这集沿用第一版封面。白黄大字节目名 **The China Food Show** 下方放两行小字，分别写 **Every Dish Is $1.80** 和 **Sichuan, China**，让观众一眼看懂每道菜的价格和拍摄地点。修改已定稿封面的文案时，沿用原图、裁切、节目名和分隔线。后续每集的价格以当集实拍为准。
+四川这集沿用第一版封面。白黄大字节目名 **The China Food Show** 下方放两行小字，分别写 **Every Dish Is $1.80** 和 **Sichuan, China**，让观众一眼看懂每道菜的价格和拍摄地点。修改已定稿封面的文案时，沿用原图、裁切、节目名和分隔线。三张封面分别放大检查食物纹理。英文封面、标题和简介统一使用美元，按当集汇率和实际份量换算。例如，250 克一份折合约 7.49 美元，封面可写 **Worth $7.49?**。
 
 **四分钟完整版可以发到哪里？** Facebook 的公开 Reel 即使长四分钟，也有机会被推荐给新观众，原创性同样会影响分发。Instagram 版如果希望通过推荐触达新观众，时长控制在三分钟以内（含三分钟）；已有粉丝可以观看更长的版本。[Facebook 视频说明](https://about.fb.com/news/2025/06/making-it-easier-create-videos-facebook/) · [Facebook 原创指南](https://about.fb.com/news/2026/03/rewarding-original-creators-on-facebook/) · [Instagram 时长说明](https://help.instagram.com/2720958398006062)
 

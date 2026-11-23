@@ -10,7 +10,7 @@ Build the covers around authentic food and human action from the episode. Use la
 
 When the user approves a cover and asks for new wording, edit the text on the approved landscape and portrait originals. Preserve the photograph, crop, large series title, and separator rules. The command below composes new covers from clean stills.
 
-Use a brief, factual English hook. Keep any price, location, or claim consistent with the episode. A shorter portrait hook can help retain a readable size. Include a location only when it helps the viewer.
+Use a brief, factual English hook. Show prices in US dollars on covers and in the English publishing title and description. Convert using the episode’s dated rate and preserve the serving size. For example, a serving priced at about US$7.49 can use “Worth $7.49?” Keep any price, location, or claim consistent with the episode. A shorter portrait hook can help retain a readable size. Include a location only when it helps the viewer.
 
 Inspect all three source crops for Chinese characters. Check signs, labels, menus, packaging, clothing, reflections, old captions, and background watermarks. For an English-only result, choose a clean alternate frame or crop the writing out before rendering. Do not cover writing with a headline and assume it has disappeared. The script validates supplied text. It cannot confirm the language of pixels in a photograph.
 
@@ -28,7 +28,7 @@ python3 scripts/covers.py \
 
 The required arguments are `--still`, `--hook`, and `--output-dir`. Pass the same master once via `--still` to compose all three covers. Use `--wide-focus 0.74,0.44` or `--portrait-focus 0.61,0.38` to identify the subject in normalized coordinates measured from the top left of its source still. Use `--four-three-focus` to position the subject in the 4:3 crop. When adding a missing 4:3 image to an existing pack, pass `--only 4x3`. Existing files are preserved. Pass `--font` to use a particular local TTF or OTF file.
 
-Open every exported JPEG at full resolution to check every edge for visible Chinese text. Then inspect them at phone-thumbnail size. Confirm that hands, faces, the key dish, and the English headline remain readable in their respective crops. If a crop fails, adjust its focus and render it again. If you need a different master image, regenerate the full set from that image.
+Inspect meat fibers, food edges and other subject details at full size in each crop. Choose a sharper still or episode-based master if camera or subject motion smears the food. Open every exported JPEG at full resolution to check every edge for visible Chinese text. Then inspect them at phone-thumbnail size. Confirm that hands, faces, the key dish, and the English headline remain readable in their respective crops. If a crop fails, adjust its focus and render it again. If you need a different master image, regenerate the full set from that image.
 
 ## Publishing
 

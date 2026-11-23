@@ -4,7 +4,7 @@
 
 Listen to the exchange before assigning voices. Use the recording, visible mouths, microphone distance, and who answers whom to identify each turn. Keep a speaker's voice consistent across cuts. One person on screen can be answering an off-camera host. A silent shot with captions may need only captions and location sound.
 
-Use your own authorized voice or a licensed stock voice for the host. Assign distinct voices to other recurring speakers. Keep unrelated crowd chatter as ambience where appropriate. Maintain two timelines: subtitle cues follow the source text on screen, and spoken turns follow the people talking. Overlapping speech can overlap in the English version.
+Use your own authorized voice or a licensed stock voice for the host. Assign distinct voices to other recurring speakers. Keep unrelated crowd chatter as ambience where appropriate. Use the original picture and sound to identify turns. Once the dub is mixed, use its final words and actual phrase times for the English dialogue captions and SRT. Overlapping speech can overlap in the English version.
 
 ## Generate and place turns
 
@@ -34,7 +34,7 @@ python3 scripts/voice.py plan.json voice-cache --generate
 python3 scripts/place_voices.py plan.json voice-cache --duration 90 --output narration.wav
 ```
 
-Generated speech, character timings, and receipts are stored under a hash of the voice ID and request payload. A run with an incomplete submission stops so you can reconcile its receipt with the provider's history. Changing only a turn's start and end reuses its speech. If a line runs too long, shorten its translation or extend its placement into available silence. The placement script allows modest pitch-preserving acceleration and reports turns that cannot fit. For an episode without dialogue, skip TTS and omit the voice input when mixing.
+Generated speech, character timings, and receipts are stored under a hash of the voice ID and request payload. A run with an incomplete submission stops so you can reconcile its receipt with the provider's history. Changing only a turn's start and end reuses its speech. If a line runs too long, shorten its translation or extend its placement into available silence. After changing a take or its wording, update the corresponding English cues and SRT from the accepted audio. The placement script allows modest pitch-preserving acceleration and reports turns that cannot fit. For an episode without dialogue, skip TTS and omit the voice input when mixing.
 
 ## Build the mix
 

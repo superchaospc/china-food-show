@@ -1,6 +1,6 @@
 interface:
   display_name: "The China Food Show"
-  short_description: "Dub food videos and match English captions to source frames"
+  short_description: "Dub food videos and match English captions to the final speech"
   default_prompt: "Use $china-food-show to make an English edition of this food video."
 policy:
   allow_implicit_invocation: true
