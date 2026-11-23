@@ -4,7 +4,7 @@
 
 Listen to the exchange before assigning voices. Use the recording, visible mouths, microphone distance, and who answers whom to identify each turn. Keep a speaker's voice consistent across cuts. One person on screen can be answering an off-camera host. A silent shot with captions may need only captions and location sound.
 
-Use your own authorized voice or a licensed stock voice for the host. Assign distinct voices to other recurring speakers. Keep unrelated crowd chatter as ambience where appropriate. Use the original picture and sound to identify turns. Once the dub is mixed, use its final words and actual phrase times for the English dialogue captions and SRT. Overlapping speech can overlap in the English version.
+Use your own authorized voice or a licensed stock voice for the host. Assign distinct voices to other recurring speakers. Keep unrelated crowd chatter as ambience where appropriate. Use the original picture and sound to identify turns. Once the dub is mixed, use its final words for the English dialogue captions and SRT. Keep the display intervals locked to the corresponding Chinese captions when adjusting speech placement. Overlapping speech can overlap in the English version.
 
 ## Generate and place turns
 

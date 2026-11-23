@@ -4,14 +4,16 @@
 
 ## English
 
-A Codex skill for turning a street-food video into an English edition. The burned-in dialogue captions and the English SRT follow the final dub. If the vendor says **“Bag or bowl?”**, viewers read those same words when the vendor speaks. Translations of written-only signs and captions follow the frames where the original text appears.
+A Codex skill for turning a street-food video into an English edition. The burned-in English dialogue and SRT use the words from the final dub and the exact visible frames of the corresponding Chinese subtitle. If the vendor says **“Bag or bowl?”**, those words appear and disappear with the corresponding Chinese line. Translations of written-only signs and captions follow the frames where the original text appears.
+
+**Required before delivery.** Chinese and English subtitles must appear, change and disappear on the same video frames, including one-frame gaps. Keep every quoted price and its USD conversion on the same English line in both the MP4 and SRT, for example `50 yuan (≈ US$7.49) for 250 g`. Apply this to repeated quotes, container fees and totals. A one-frame mismatch, a split price or a conversion shown only in a corner must be fixed before delivery.
 
 ### Install and try it
 
 Use Python 3.10 or later and install FFmpeg with ffprobe, libass, and libx264. On macOS, the optional Chinese OCR helper uses Swift and Apple Vision. Clone the release into a **new** Codex skill directory:
 
 ```sh
-git clone --branch v1.0.6 https://github.com/superchaospc/china-food-show.git ~/.codex/skills/china-food-show
+git clone --branch v1.0.7 https://github.com/superchaospc/china-food-show.git ~/.codex/skills/china-food-show
 cd ~/.codex/skills/china-food-show
 python3 -m venv .venv
 . .venv/bin/activate
@@ -26,7 +28,7 @@ The smoke test creates a two-second synthetic clip, burns two captions, mixes an
 | Stage | Result |
 | --- | --- |
 | Picture | Prefer dedicated watermark-removal software when authorized. Check the actual job quote before using paid credits. Inspect moving textures before adding a transparent logo. |
-| Captions | Compare every spoken turn against the burned-in dialogue and SRT, including brief replies. Verify the rendered frames separately. Show unspoken USD conversions as separate price notes. |
+| Captions | Compare every spoken turn against the burned-in dialogue and SRT, including brief replies. Verify the rendered frames separately. Every original price and its USD equivalent must remain together on the same English subtitle line in both MP4 and SRT. |
 | Voices and sound | Cast the people who actually speak. Use one voice for a solo host, stable voices for a conversation, or ambience alone for a silent scene. Keep the sound of cooking; lower optional music under speech. |
 | Covers | One episode image, cropped and typeset for three English covers: a 16:9 YouTube thumbnail, a 4:3 landscape cover (1440 × 1080), and a 3:4 portrait cover for TikTok. Select frames with no visible Chinese captions or signs. |
 
@@ -42,7 +44,9 @@ Bring your own footage, authorized voices, music, and optional transparent logo.
 
 ## 简体中文
 
-这个 Codex 技能把街头美食实拍做成英文版。画面英文对白和英文 SRT 都按最终配音的原词和发声时间制作。摊主说 **“Bag or bowl?”**，观众就同时看到这句话。只出现在画面上的菜单或文字，按原文可见的帧翻译。
+这个 Codex 技能把街头美食实拍做成英文版。画面英文对白和英文 SRT 使用最终配音的原词，与对应中文字幕同帧出现、切换和消失，保留每一帧空窗。摊主说 **“Bag or bowl?”**，英文字幕就用这句话。只出现在画面上的菜单或文字，按原文可见的帧翻译。
+
+**强制交付条件。** 中英文字幕必须同帧出现、换句和消失，连一帧空窗也要保持一致。每次报价都在原价后同行括注美元，例如 `50 yuan (≈ US$7.49) for 250 g`。重复报价、碗费和合计都要标注，烧录版和独立 SRT 一致。发现一帧偏差、原价与美元分行，或美元只出现在左上角等独立浮层，必须修正并复验。
 
 ### 安装和试跑
 
@@ -55,7 +59,7 @@ Bring your own footage, authorized voices, music, and optional transparent logo.
 | 环节 | 处理方式 |
 | --- | --- |
 | 画面 | 需要去水印时优先用专业软件，付费提交前核对实际报价。先检查菜叶、手和锅沿移动时的修复效果，再按原水印位置叠加自备透明台标。 |
-| 字幕 | 将配音定稿逐句对照画面英文对白和 SRT，核对短答、换人、缩句和实际发声时间，再检查成片字幕帧。美元换算单独显示为价格提示。 |
+| 字幕 | 将配音定稿逐句对照画面英文对白和 SRT，核对短答、换人、缩句和实际发声时间，再检查成片字幕帧。每次原价后必须在同一行英文字幕内括注美元，烧录版和 SRT 一致。中英文相差一帧或报价缺少同行美元括注，均须修正后再交付。 |
 | 声音 | 按实际发言人数选声，支持单人、多人和无对白。保留炒菜和餐具声，可选配乐在说话时自动放轻。 |
 | 封面 | 根据本集菜品与场景选取或生成一张无字主图，用同一张图分别裁切和排版 YouTube 横版 16:9、通用横版 4:3（1440×1080）和 TikTok 竖版 3:4。封面只用英文，也要检查背景里的中文字幕和招牌。 |
 
