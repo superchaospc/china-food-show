@@ -13,7 +13,7 @@ A Codex skill for turning a street-food video into an English edition. The burne
 Use Python 3.10 or later and install FFmpeg with ffprobe, libass, and libx264. On macOS, the optional Chinese OCR helper uses Swift and Apple Vision. Clone the release into a **new** Codex skill directory:
 
 ```sh
-git clone --branch v1.1.0 https://github.com/superchaospc/china-food-show.git ~/.codex/skills/china-food-show
+git clone --branch v1.1.1 https://github.com/superchaospc/china-food-show.git ~/.codex/skills/china-food-show
 cd ~/.codex/skills/china-food-show
 python3 -m venv .venv
 . .venv/bin/activate
@@ -30,7 +30,7 @@ The smoke test creates a two-second synthetic clip, burns two captions, mixes an
 | Picture | Prefer dedicated watermark-removal software when authorized. Check the actual job quote before using paid credits. Inspect moving textures before adding a transparent logo. |
 | Captions | Compare every spoken turn against the burned-in dialogue and SRT, including brief replies. Verify the rendered frames separately. Every original price and its USD equivalent must remain together on the same English subtitle line in both MP4 and SRT. |
 | Voices and sound | Cast the people who actually speak. Use one voice for a solo host, stable voices for a conversation, or ambience alone for a silent scene. Keep the sound of cooking; lower optional music under speech. |
-| Posters | Use genuine episode frames that show what makes the episode distinctive. Compose a 1080 × 1440 (3:4) and a 1080 × 1920 (9:16) English poster. |
+| Posters | Choose one real frame that shows what makes the episode distinctive. Crop that photograph for both English posters, 1080 × 1440 (3:4) and 1080 × 1920 (9:16). |
 
 Each episode has its own folder under the selected publishing directory. Include a full vertical MP4, an additional 2:59 cut only for episodes longer than 3:00, the two portrait posters, and UTF-8 `Title and Description.txt`. Put the English title on the first line, leave a blank line before the description, and end with `#chinesefood #streetfood #cooking`. Keep the SRT in the workspace.
 
@@ -61,7 +61,7 @@ Bring your own footage, authorized voices, music, and optional transparent logo.
 | 画面 | 需要去水印时优先用专业软件，付费提交前核对实际报价。先检查菜叶、手和锅沿移动时的修复效果，再按原水印位置叠加自备透明台标。 |
 | 字幕 | 将配音定稿逐句对照画面英文对白和 SRT，核对短答、换人、缩句和实际发声时间，再检查成片字幕帧。每次原价后必须在同一行英文字幕内括注美元，烧录版和 SRT 一致。中英文相差一帧或报价缺少同行美元括注，均须修正后再交付。 |
 | 声音 | 按实际发言人数选声，支持单人、多人和无对白。保留炒菜和餐具声，可选配乐在说话时自动放轻。 |
-| 海报 | 先确定本集最特别的卖点，再用能看出份量、场地或做法的实拍帧，分别制作 3:4 和 9:16 英文海报。 |
+| 海报 | 先确定本集最特别的卖点，只选一张能看出份量、场地或做法的实拍主图，用同一帧分别裁切制作 3:4 和 9:16 英文海报。 |
 
 在指定发布目录下每集建一个文件夹，放完整竖屏 MP4、两张竖版海报和一份 UTF-8 的 `Title and Description.txt`。原片超过 3:00 时另交 2:59 精简版，同集两版用文件名区分。TXT 首行写英文标题，空一行写简介，末行为 `#chinesefood #streetfood #cooking`。SRT 留在工程目录。
 

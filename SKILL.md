@@ -15,7 +15,7 @@ Use this workflow when a user wants a finished English edition of a food video. 
 
 ## Vertical edition and posters
 
-Follow [Vertical video delivery](references/vertical.md) for the complete 1080 × 1920 episode and a separate 2:59 edit when the source exceeds 3:00. Use the creator's approved series artwork for the panels. Choose a photograph that shows the episode's distinctive selling point and compose the 3:4 and 9:16 posters independently. See [Poster selection and design](references/covers.md).
+Follow [Vertical video delivery](references/vertical.md) for the complete 1080 × 1920 episode and a separate 2:59 edit when the source exceeds 3:00. Use the creator's approved series artwork for the panels. Select one real frame that shows the episode's distinctive selling point. Use that same photograph for both posters, with a separate crop for 3:4 and 9:16. See [Poster selection and design](references/covers.md).
 
 ## Final delivery
 
