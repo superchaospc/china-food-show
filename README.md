@@ -13,7 +13,7 @@ A Codex skill for turning a street-food video into an English edition. The burne
 Use Python 3.10 or later and install FFmpeg with ffprobe, libass, and libx264. On macOS, the optional Chinese OCR helper uses Swift and Apple Vision. Clone the release into a **new** Codex skill directory:
 
 ```sh
-git clone --branch v1.0.8 https://github.com/superchaospc/china-food-show.git ~/.codex/skills/china-food-show
+git clone --branch v1.1.0 https://github.com/superchaospc/china-food-show.git ~/.codex/skills/china-food-show
 cd ~/.codex/skills/china-food-show
 python3 -m venv .venv
 . .venv/bin/activate
@@ -30,11 +30,11 @@ The smoke test creates a two-second synthetic clip, burns two captions, mixes an
 | Picture | Prefer dedicated watermark-removal software when authorized. Check the actual job quote before using paid credits. Inspect moving textures before adding a transparent logo. |
 | Captions | Compare every spoken turn against the burned-in dialogue and SRT, including brief replies. Verify the rendered frames separately. Every original price and its USD equivalent must remain together on the same English subtitle line in both MP4 and SRT. |
 | Voices and sound | Cast the people who actually speak. Use one voice for a solo host, stable voices for a conversation, or ambience alone for a silent scene. Keep the sound of cooking; lower optional music under speech. |
-| Covers | One episode image, cropped and typeset for three English covers: a 16:9 YouTube thumbnail, a 4:3 landscape cover (1440 × 1080), and a 3:4 portrait cover for TikTok. Select frames with no visible Chinese captions or signs. |
+| Posters | Use genuine episode frames that show what makes the episode distinctive. Compose a 1080 × 1440 (3:4) and a 1080 × 1920 (9:16) English poster. |
 
-A finished episode goes in one folder directly under Downloads, named `The China Food Show - <episode name>`. Deliver the MP4 with burned-in bilingual captions, the cover JPEGs (including a 9:16 poster when requested), and one UTF-8 copy file named `Title and Description.txt`. Put the English YouTube title on the first line, leave one blank line, then write the description. Use exactly three hashtags, all on the final line: `#chinesefood #streetfood #cooking`. Keep the English SRT in the project workspace for verification and revisions. Later revisions update the same folder.
+Each episode has its own folder under the selected publishing directory. Include a full vertical MP4, an additional 2:59 cut only for episodes longer than 3:00, the two portrait posters, and UTF-8 `Title and Description.txt`. Put the English title on the first line, leave a blank line before the description, and end with `#chinesefood #streetfood #cooking`. Keep the SRT in the workspace.
 
-For the Sichuan episode, the large white-and-yellow **The China Food Show** title sits above two smaller lines: **Every Dish Is $1.80** and **Sichuan, China**. The price applies to each dish. When revising the copy on an approved cover, start with that cover and keep its photograph, crop, title and rules in place. Check focus and food texture at full size in each crop. Use US dollars for prices on English covers, titles and descriptions. Verify the exchange rate and portion for each episode. For example, a 250 g serving costing about US$7.49 can use **Worth $7.49?**
+For the Sichuan episode, the large white-and-yellow **The China Food Show** title sits above two smaller lines: **Every Dish Is $1.80** and **Sichuan, China**. The price applies to each dish. When revising the copy on an approved cover, start with that cover and keep its photograph, crop, title and rules in place. Check focus and food texture at full size in both poster crops. Use US dollars for prices on English covers, titles and descriptions. Verify the exchange rate and portion for each episode. For example, a 250 g serving costing about US$7.49 can use **Worth $7.49?**
 
 **Where to post the full episode.** A public four-minute Facebook Reel can be recommended to new viewers. Originality also affects distribution. On Instagram, use a cut of three minutes or less when the goal is reaching new viewers through recommendations. Existing followers can watch a longer version. [Facebook Reels](https://about.fb.com/news/2025/06/making-it-easier-create-videos-facebook/) · [Facebook originality guidelines](https://about.fb.com/news/2026/03/rewarding-original-creators-on-facebook/) · [Instagram Reels](https://help.instagram.com/2720958398006062)
 
@@ -61,16 +61,16 @@ Bring your own footage, authorized voices, music, and optional transparent logo.
 | 画面 | 需要去水印时优先用专业软件，付费提交前核对实际报价。先检查菜叶、手和锅沿移动时的修复效果，再按原水印位置叠加自备透明台标。 |
 | 字幕 | 将配音定稿逐句对照画面英文对白和 SRT，核对短答、换人、缩句和实际发声时间，再检查成片字幕帧。每次原价后必须在同一行英文字幕内括注美元，烧录版和 SRT 一致。中英文相差一帧或报价缺少同行美元括注，均须修正后再交付。 |
 | 声音 | 按实际发言人数选声，支持单人、多人和无对白。保留炒菜和餐具声，可选配乐在说话时自动放轻。 |
-| 封面 | 根据本集菜品与场景选取或生成一张无字主图，用同一张图分别裁切和排版 YouTube 横版 16:9、通用横版 4:3（1440×1080）和 TikTok 竖版 3:4。封面只用英文，也要检查背景里的中文字幕和招牌。 |
+| 海报 | 先确定本集最特别的卖点，再用能看出份量、场地或做法的实拍帧，分别制作 3:4 和 9:16 英文海报。 |
 
-每集在「下载」下单独建一个 `The China Food Show - <本集名>` 文件夹。文件夹内放烧录双语字幕的 MP4、封面 JPG（按需加做 9:16 海报）和一个 UTF-8 文案文件 `Title and Description.txt`。首行放英文 YouTube 标题，空一行后放英文正文。全文只用三个标签，末行固定为 `#chinesefood #streetfood #cooking`。英文 SRT 留在工程目录供验收和修改。后续改版更新到同一交付文件夹。
+在指定发布目录下每集建一个文件夹，放完整竖屏 MP4、两张竖版海报和一份 UTF-8 的 `Title and Description.txt`。原片超过 3:00 时另交 2:59 精简版，同集两版用文件名区分。TXT 首行写英文标题，空一行写简介，末行为 `#chinesefood #streetfood #cooking`。SRT 留在工程目录。
 
-四川这集沿用第一版封面。白黄大字节目名 **The China Food Show** 下方放两行小字，分别写 **Every Dish Is $1.80** 和 **Sichuan, China**，让观众一眼看懂每道菜的价格和拍摄地点。修改已定稿封面的文案时，沿用原图、裁切、节目名和分隔线。三张封面分别放大检查食物纹理。英文封面、标题和简介统一使用美元，按当集汇率和实际份量换算。例如，250 克一份折合约 7.49 美元，封面可写 **Worth $7.49?**。
+四川这集沿用第一版封面。白黄大字节目名 **The China Food Show** 下方放两行小字，分别写 **Every Dish Is $1.80** 和 **Sichuan, China**，让观众一眼看懂每道菜的价格和拍摄地点。修改已定稿封面的文案时，沿用原图、裁切、节目名和分隔线。两张海报分别放大检查食物纹理。英文封面、标题和简介统一使用美元，按当集汇率和实际份量换算。例如，250 克一份折合约 7.49 美元，封面可写 **Worth $7.49?**。
 
 **四分钟完整版可以发到哪里？** Facebook 的公开 Reel 即使长四分钟，也有机会被推荐给新观众，原创性同样会影响分发。Instagram 版如果希望通过推荐触达新观众，时长控制在三分钟以内（含三分钟）；已有粉丝可以观看更长的版本。[Facebook 视频说明](https://about.fb.com/news/2025/06/making-it-easier-create-videos-facebook/) · [Facebook 原创指南](https://about.fb.com/news/2026/03/rewarding-original-creators-on-facebook/) · [Instagram 时长说明](https://help.instagram.com/2720958398006062)
 
 公开版使用你自己的素材、合法可用的音色、配乐和可选台标。生成新旁白时才需要 ElevenLabs；先查看计划和缓存，显式使用 `--generate` 才会提交未生成的台词。TikTok 的 3:4 是封面素材比例，App 常规发布流程是从视频中选择封面帧。
 
-[字幕与验帧](references/captions.md) · [配音与混音](references/audio.md) · [去水印与导出](references/finish.md) · [三种封面的制作说明](references/covers.md)
+[字幕与验帧](references/captions.md) · [配音与混音](references/audio.md) · [去水印与导出](references/finish.md) · [两种竖版海报的制作说明](references/covers.md)
 
 [MIT License](LICENSE)

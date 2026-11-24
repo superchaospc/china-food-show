@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Compose English episode covers in 16:9, 4:3 and 3:4 from clean stills."""
+"""Compose English episode covers in 3:4 and 9:16 from clean stills."""
 import argparse
 import io
 import os
@@ -135,10 +135,10 @@ def encode(canvas):
 
 def main():
     p = argparse.ArgumentParser(description=__doc__)
-    p.add_argument('--still', required=True, type=Path, help='clean episode still for the landscape cover')
+    p.add_argument('--still', required=True, type=Path, help='clean episode still for the selected cover formats')
     p.add_argument('--four-three-still', type=Path, help='optional separate source for the 4:3 landscape cover')
     p.add_argument('--four-three-focus', type=focal_point, default=(.76, .44), help='4:3 source focus X,Y in [0,1]')
-    p.add_argument('--only', choices=('16x9', '4x3', '3x4'), help='render one format when adding a missing cover')
+    p.add_argument('--only', choices=('3x4', '9x16', '16x9', '4x3'), help='render one format when adding a missing cover')
     p.add_argument('--portrait-still', type=Path, help='optional separate source for the portrait cover')
     p.add_argument('--hook', required=True, type=english_copy, help='short English headline')
     p.add_argument('--portrait-hook', type=english_copy, help='optional English headline for the narrower layout')
@@ -151,11 +151,12 @@ def main():
     face = select_font(a.font)
     a.output_dir.mkdir(parents=True, exist_ok=True)
     formats = {
+        '9x16': ('Poster-9x16.jpg', a.portrait_still or a.still, a.portrait_hook or a.hook, a.portrait_focus, (1080, 1920)),
         '16x9': ('youtube-16x9.jpg', a.still, a.hook, a.wide_focus, (3840, 2160)),
         '4x3': ('landscape-4x3.jpg', a.four_three_still or a.still, a.hook, a.four_three_focus, (1440, 1080)),
-        '3x4': ('tiktok-3x4.jpg', a.portrait_still or a.still, a.portrait_hook or a.hook, a.portrait_focus, (1080, 1440)),
+        '3x4': ('Poster-3x4.jpg', a.portrait_still or a.still, a.portrait_hook or a.hook, a.portrait_focus, (1080, 1440)),
     }
-    designs = [formats[a.only]] if a.only else list(formats.values())
+    designs = [formats[a.only]] if a.only else [formats['3x4'], formats['9x16']]
     with tempfile.TemporaryDirectory(dir=a.output_dir) as scratch:
         for name, source, title, focus, size in designs:
             if (a.output_dir / name).exists():
