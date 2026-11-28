@@ -2,7 +2,7 @@
 name: china-food-show
 description: Produce an English edition of a Chinese street-food, restaurant or market video from a link or local file, with speaker-aware dubbing, English dialogue captions matched to the final dub, optional music and a channel badge, delivered as matching 4:3 and black-padded 9:16 videos plus two portrait posters.
 metadata:
-  version: "1.2.0"
+  version: "1.3.0"
 ---
 
 # The China Food Show
@@ -26,6 +26,6 @@ Deliver exactly four files per episode.
 | `Poster-3x4.jpg` | 1080×1440, using the creator’s approved portrait artwork. |
 | `Poster-9x16.jpg` | 1080×1920, using the same portrait and episode copy. |
 
-On both posters, state the rounded whole-dollar price, the quantity and the food together, for example **$5 FOR ONE SLICE OF PORK**. Align the price and its label on one typographic baseline. Preserve the requested location spelling and case, with city, region and country separated by commas. Keep the original currency secondary and omit a redundant dish caption. See [Poster layout and rendering](references/covers.md).
+On both posters, put the uppercase location above the headline. State the price with its unit on a common baseline. For a buffet, put the verified offer on the next line, for example **$1.5 PER PERSON** above **ALL YOU CAN EAT**. Use the episode’s approved decimal precision, with whole dollars as the default. Leave original-currency and redundant dish footers off by default. See [Poster layout and rendering](references/covers.md).
 
 Keep the source, SRT, edit list, audio stems, English title and description, previews and superseded exports in the workspace. Decode both final MP4s and compare frame timing, captions and AAC packets. Open both JPEGs at phone size. Return the verified delivery folder.

@@ -13,7 +13,7 @@ A Codex skill for turning a street-food video into an English edition. The burne
 Use Python 3.10 or later and install FFmpeg with ffprobe, libass, and libx264. On macOS, the optional Chinese OCR helper uses Swift and Apple Vision. Clone the release into a **new** Codex skill directory:
 
 ```sh
-git clone --branch v1.2.0 https://github.com/superchaospc/china-food-show.git ~/.codex/skills/china-food-show
+git clone --branch v1.3.0 https://github.com/superchaospc/china-food-show.git ~/.codex/skills/china-food-show
 cd ~/.codex/skills/china-food-show
 python3 -m venv .venv
 . .venv/bin/activate
@@ -34,13 +34,15 @@ The smoke test creates a two-second synthetic clip, burns two captions, mixes an
 
 For a source over 3:00, cut the story to 2:59 first. Shorter sources and sources exactly 3:00 retain their runtime. Cut the isolated voices, ambience and captions to the locked picture, then lay a continuous score over the finished edit. Both MP4s share the same frame timing, captions, upper-right badge and final AAC audio. Preserve the existing subtitle treatment, with English directly above Chinese.
 
-Both posters use the existing Wayne’s Price Tag portrait in the creator’s setup. Other installations can provide their own approved square portrait. The headline states the whole-dollar price, quantity and food on one baseline. For ¥35 per slice, verified at US$5.22, the headline reads **$5 FOR ONE SLICE OF PORK**. The location reads **chengdu, sichuan, china** and ¥35 appears in smaller type. Poster prices round half up to whole dollars. Dialogue subtitles preserve the precise USD conversion.
+Both posters use the approved square portrait. Set the location in uppercase, for example **CHONGQING**. The first headline line pairs the price with what it buys or who pays it. For the Chongqing buffet, **$1.5 PER PERSON** and **ALL YOU CAN EAT** share the headline across two lines. The small original-currency and dish labels are omitted by default. Use a verified portion or offer for each episode.
 
 ```sh
 python scripts/profile_posters.py --profile portrait.png \
-  --location 'chengdu, sichuan, china' --usd 5.22 \
-  --unit 'FOR ONE SLICE OF PORK' --original '¥35' --output-dir posters
+  --location 'Chongqing' --usd 1.5028 --usd-decimals 1 \
+  --unit 'PER PERSON' --offer 'ALL YOU CAN EAT' --output-dir posters
 ```
+
+Whole-dollar rounding remains the default for episodes such as **$5 FOR ONE SLICE OF PORK**. Select one or two decimal places when an episode calls for a more precise poster price. Trailing zeros are omitted. Dialogue subtitles retain their verified USD conversion to cents.
 
 Keep working files, the SRT, posting copy and earlier cuts in the episode workspace. Supply your own portrait, opaque badge, footage, music and authorized voices. The poster renderer uses macOS system fonts or DejaVu fonts on other platforms. The optional ElevenLabs services require an account when generating new voices or music. The offline smoke test uses synthetic inputs.
 
@@ -69,7 +71,9 @@ Keep working files, the SRT, posting copy and earlier cuts in the episode worksp
 
 原片超过 3 分钟时先剪至 2:59，等于或短于 3 分钟时保留原时长。先锁定剪点，按同一时间轴剪独立人声、现场声和字幕，再连续铺 ElevenLabs 或其他已获授权的配乐。两版视频共用同一条最终 AAC。沿用原字幕样式，英文在中文上方；黑金角标贴在 4:3 内容区右上角。
 
-海报只在定稿人像上加字。主标题写清**多少钱、买多少、买什么**。例如 35 元一片猪肉折合 5.22 美元，两张海报均写 **$5 FOR ONE SLICE OF PORK**。美元按四舍五入取整数，金额和英文说明共用字体基线。地点行沿用用户给定的大小写，例如 **chengdu, sichuan, china**。原价 ¥35 可作小字，底部省去主标题中已有的菜名。视频字幕保留精确美元括注。
+海报在定稿人像上加字，地点用大写，例如 **CHONGQING**。主标题写清价格和对应的份量或计价对象。重庆自助餐上行写 **$1.5 PER PERSON**，下行写 **ALL YOU CAN EAT**。默认省去原币小字和重复菜名。
+
+美元按当集要求显示。成都一片猪肉仍可用默认整数 **$5 FOR ONE SLICE OF PORK**；重庆这集用 `--usd-decimals 1` 保留一位小数。画面字幕继续保留精确到美分的美元括注。
 
 上方命令会同时生成两张海报。每集交付目录只放表中的四个文件，SRT、发布文案、历史版本和其他工程材料保存在工作区。公开版使用自己的授权人像、角标、配乐和音色。
 
