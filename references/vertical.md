@@ -1,16 +1,16 @@
-# Vertical video delivery
+# Two video formats from one edit
 
-Use a 1080 × 1920 canvas. For a 16:9 master, fit the complete picture across the middle (1080 × 608, starting at y=656). Keep both subtitle lines and the final mix. For another aspect ratio, preserve the original geometry; a native 9:16 master does not need a second frame around it.
+For sources longer than 180 seconds, lock a 179-second edit. Otherwise keep the original runtime unless the user sets another target. Remove repetitions or waits while preserving whole thoughts, the quoted price, the defining action and the outcome. Record the edit points in source frames. Apply them to the picture, isolated voices, clean ambience and caption cues. Score the finished timeline, check every cut, and encode its final AAC once.
 
-Use the approved series artwork in the top and bottom panels. For the approved 16:9 layout, the centered top logo is about 876 px wide with about 103 px clear above its first visible mark. The lower panel starts at y=1264. Place the location and two-line episode title on the left, the small logo on the right and the rule below, as a group. The first line of type starts about 36 px below the footage. Fit long titles without colliding with the logo. Verify an actual decoded frame.
+Use a fixed center crop. For a 1920×1080 square-pixel source, `crop=1440:1080:240:0` removes 240 pixels on the left and right. Check the action and both caption lines. If a narrow source makes the requested crop incompatible with a key shot or subtitle, identify the affected shot before changing its framing.
 
-Every episode gets a full native-duration vertical MP4. If the source duration exceeds 180.000 seconds, also produce a separate 179.000-second vertical cut. Exactly three minutes gets the full edition alone. Use the transcript, watch the footage on both sides of each proposed edit, and remove redundancy, waits or unrelated promotions first. Keep the setup, distinctive action and outcome. Cut on whole thoughts, keep the final audio and burned-in captions in sync, and check the first and last shots. Verify the exported duration with ffprobe and decode the final files.
-
-For an approved landscape master, prepare two 1080 × 656 PNG panels with the episode title already typeset on the footer. The following example preserves the full programme and its AAC mix.
+From the finished 4:3 master, derive the 9:16 edition by adding equal pure-black bands above and below. Keep the active picture edge to edge and preserve the native detail, frame timing, color and badge placement. For a 1440×1080 SDR master with its approved badge and subtitles:
 
 ```sh
-ffmpeg -i master.mp4 -i header.png -i footer.png \
-  -filter_complex '[1:v]scale=out_color_matrix=bt709,format=yuv420p[h];[2:v]scale=out_color_matrix=bt709,format=yuv420p[f];[0:v]scale=1080:608,setsar=1,pad=1080:1920:0:656[m];[m][h]overlay=0:0[t];[t][f]overlay=0:1264[v]' \
-  -map '[v]' -map 0:a:0 -c:v libx264 -crf 19 -pix_fmt yuv420p \
-  -colorspace bt709 -color_trc bt709 -color_primaries bt709 -c:a copy -movflags +faststart full-vertical.mp4
+ffmpeg -n -i master-4x3.mov -i final-audio.m4a \
+  -filter_complex '[0:v]split=2[wide][v];[v]pad=1440:2560:0:740:color=black[tall]' \
+  -map '[wide]' -map 1:a:0 -c:v libx264 -crf 15 -preset slow -fps_mode passthrough -pix_fmt yuv420p -c:a copy -movflags +faststart episode-4x3.mp4 \
+  -map '[tall]' -map 1:a:0 -c:v libx264 -crf 15 -preset slow -fps_mode passthrough -pix_fmt yuv420p -c:a copy -movflags +faststart episode-9x16.mp4
 ```
+
+Adapt dimensions, pixel format and color metadata to the actual source. Deliver the 4:3 file directly if it is already approved. When recovering it from the vertical master, export actual cropped pixels: some hardware decoders show incorrect boundaries for metadata-only crops. Decode the final files, compare video PTS, frame counts and audio packet payloads, and inspect the central image, bars, subtitle boundaries and cooking action. Check beginning, middle and end with software and hardware playback.

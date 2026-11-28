@@ -6,6 +6,7 @@ import os
 import subprocess
 import tempfile
 from fractions import Fraction
+from math import ceil
 from pathlib import Path
 
 
@@ -92,18 +93,40 @@ def mark_filter(size, ink, box):
     return label + f"[base][mark]overlay={x-dx}:{y-dy}:eof_action=repeat:repeatlast=1[out]"
 
 
+def badge_filter(width, height, logo, box):
+    """Anchor the approved opaque artwork to the top-right of the active picture."""
+    mark = stream(logo, "v:0")
+    ratio = Fraction(mark["width"], mark["height"])
+    needed_w, needed_h = max(2, round(width * 224 / 1440)), 0
+    if box:
+        x, y, w, h = box
+        if min(x, y) < 0 or min(w, h) <= 0 or x + w > width or y + h > height:
+            raise ValueError("Measure the watermark on the cropped picture")
+        needed_w, needed_h = max(needed_w, width - x), y + h
+    # Choose even dimensions and preserve the entire mark including its opaque backing.
+    w = 2 * ceil(max(needed_w, needed_h * ratio) / 2)
+    h = 2 * ceil(w / ratio / 2)
+    if w > width or h > height:
+        raise ValueError("The detected mark needs shot-specific masking")
+    return (f"[2:v]scale={w}:{h}:flags=lanczos,setsar=1[badge];"
+            f"[base][badge]overlay={width-w}:0:eof_action=repeat:repeatlast=1[out]")
+
+
 def main():
     p = argparse.ArgumentParser(description=__doc__)
-    for name in ("video", "ass", "audio", "output"):
+    for name in ("video", "audio", "output"):
         p.add_argument("--" + name, required=True, type=Path)
     p.add_argument("--reference", type=Path, help="Original media used to check geometry and presentation timestamps")
     p.add_argument("--box", type=int, nargs=4, metavar=("X", "Y", "W", "H"))
-    p.add_argument("--logo", type=Path, help="Optional transparent logo image")
+    p.add_argument("--ass", type=Path, help="Omit for a master with approved bilingual captions")
+    branding = p.add_mutually_exclusive_group()
+    branding.add_argument("--logo", type=Path, help="Transparent wordmark for older projects")
+    branding.add_argument("--badge", type=Path, help="Opaque upper-right badge for the cropped picture")
     args = p.parse_args()
-    if args.box is not None and args.logo is None:
-        p.error("--box requires --logo")
-    video, subtitles, audio, output = (item.resolve() for item in
-                                       (args.video, args.ass, args.audio, args.output))
+    if args.box and not (args.logo or args.badge):
+        p.error("--box requires --badge or --logo")
+    video, audio, output = (item.resolve() for item in (args.video, args.audio, args.output))
+    subtitles = args.ass.resolve() if args.ass else None
     reference = (args.reference or video).resolve()
     if output.exists():
         raise ValueError(f"Choose a new output path: {output}")
@@ -121,11 +144,17 @@ def main():
     tolerance = max(.06, 1 / float(Fraction(ref["avg_frame_rate"])))
     if abs(float(a.get("start_time", 0))) > .002 or abs(float(a["duration"]) - float(ref["duration"])) > tolerance:
         raise ValueError("Supply a full-duration final mix aligned to zero before rendering")
-    if not subtitles.is_file():
+    if subtitles and not subtitles.is_file():
         raise ValueError(f"Missing ASS: {subtitles}")
-    graph = "[0:v]setpts=PTS-STARTPTS,ass=captions.ass:shaping=auto"
+    graph = "[0:v]setpts=PTS-STARTPTS"
+    if subtitles:
+        graph += ",ass=captions.ass:shaping=auto"
     logo_input = []
-    if args.logo is None:
+    if args.badge:
+        badge = args.badge.resolve()
+        logo_input = ["-i", str(badge)]
+        graph += "[base];" + badge_filter(info["width"], info["height"], badge, args.box)
+    elif args.logo is None:
         graph += "[out]"
     else:
         logo = args.logo.resolve()
@@ -140,7 +169,8 @@ def main():
     output.parent.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory(dir=output.parent) as work:
         tmp = Path(work)
-        (tmp / "captions.ass").symlink_to(subtitles)
+        if subtitles:
+            (tmp / "captions.ass").symlink_to(subtitles)
         stage = tmp / "render.mp4"
         subprocess.run(["ffmpeg", "-nostdin", "-v", "error", "-n", "-i", str(video), "-i", str(audio),
                         *logo_input, "-filter_complex", graph, "-map", "[out]", "-map", "1:a:0",

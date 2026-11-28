@@ -46,6 +46,8 @@ The mixer accepts any combination of ambience, narration, and user-supplied musi
 python3 scripts/mix-audio.py --duration 90 --bed ambience.wav --voice narration.wav --output mix.wav
 ```
 
+Lock the picture edit before scoring. Apply its cuts to the isolated dialogue, clean ambience and captions. Then lay a continuous score across the finished timeline and copy the final AAC to both video formats. Listen across every cut as well as the ending.
+
 To loop your own score, pick two matching downbeats and audition the join. The following example repeats the section from 0.75 to 12.75 seconds. A 0.15-second crossfade reads the score through 12.90 seconds. Pick new values for each recording. Without loop points, the score plays once and any remaining time is silent on that stem.
 
 ```sh
