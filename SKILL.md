@@ -2,7 +2,7 @@
 name: china-food-show
 description: Produce an English edition of a Chinese street-food, restaurant or market video from a link or local file, with speaker-aware dubbing, English dialogue captions matched to the final dub, optional music and a channel badge, delivered as matching 4:3 and black-padded 9:16 videos plus two portrait posters.
 metadata:
-  version: "1.3.0"
+  version: "1.3.1"
 ---
 
 # The China Food Show
@@ -17,7 +17,7 @@ Use this workflow when a user wants a finished English edition of a food video. 
 
 ## Publishing folder
 
-Deliver exactly four files per episode.
+Deliver five files per episode.
 
 | File | Specification |
 | --- | --- |
@@ -25,7 +25,10 @@ Deliver exactly four files per episode.
 | Episode 9:16 MP4 | Center the same complete picture with equal pure-black padding above and below. A 1440×1080 picture fills the width of a 1440×2560 canvas, with 740 black rows above and below. |
 | `Poster-3x4.jpg` | 1080×1440, using the creator’s approved portrait artwork. |
 | `Poster-9x16.jpg` | 1080×1920, using the same portrait and episode copy. |
+| `Title and Description.txt` | UTF-8 publishing copy. |
+
+On the first line, write a standalone English episode title. Omit the series name **The China Food Show** from the title by default. For example, use **What's in a $12.67 Plate of Fried Rice in Chengdu, Sichuan, China?**. Leave one blank line, write the episode description, and end with `#chinesefood #streetfood #cooking`.
 
 On both posters, put the uppercase location above the headline. State the price with its unit on a common baseline. For a buffet, put the verified offer on the next line, for example **$1.5 PER PERSON** above **ALL YOU CAN EAT**. Use the episode’s approved decimal precision, with whole dollars as the default. Leave original-currency and redundant dish footers off by default. See [Poster layout and rendering](references/covers.md).
 
-Keep the source, SRT, edit list, audio stems, English title and description, previews and superseded exports in the workspace. Decode both final MP4s and compare frame timing, captions and AAC packets. Open both JPEGs at phone size. Return the verified delivery folder.
+Keep the source, SRT, edit list, audio stems, previews and superseded exports in the workspace. Decode both final MP4s and compare frame timing, captions and AAC packets. Open both JPEGs at phone size. Return the verified delivery folder.
